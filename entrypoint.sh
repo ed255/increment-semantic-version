@@ -47,7 +47,7 @@ main() {
   "bug")
     ((++patch)); pre="";;
   "alpha")
-    if [[ ! -z "$preversion" ]]; then
+    if [[ -z "$preversion" ]]; then
       preversion=0
     fi
     ((++preversion))
@@ -56,7 +56,7 @@ main() {
     fi
     pre="-alpha$preversion";;
   "beta")
-    if [[ ! -z "$preversion" ]]; then
+    if [[ -z "$preversion" ]]; then
       preversion=0
     fi
     ((++preversion))
@@ -65,7 +65,7 @@ main() {
     fi
     pre="-beta$preversion";;
   "rc")
-    if [[ ! -z "$preversion" ]]; then
+    if [[ -z "$preversion" ]]; then
       preversion=0
     fi
     ((++preversion))
@@ -75,6 +75,7 @@ main() {
     pre="-rc$preversion";;
   esac
 
+
   next_version="${major}.${minor}.${patch}${pre}"
   echo "create $release_type-release version: $prev_version -> $next_version"
 
@@ -82,3 +83,4 @@ main() {
 }
 
 main "$1" "$2"
+
